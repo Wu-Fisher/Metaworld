@@ -12,7 +12,7 @@ from typing import Sequence, Union
 import numpy as np
 from typing_extensions import TypeAlias
 
-from metaworld.envs.mujoco.sawyer_xyz import SawyerXYZEnv, v2
+from metaworld.envs.mujoco.sawyer_xyz import SawyerXYZEnv, v2, v3
 
 # Utils
 
@@ -73,6 +73,8 @@ ENV_CLS_MAP = {
     "sweep-v2": v2.SawyerSweepEnvV2,
     "window-open-v2": v2.SawyerWindowOpenEnvV2,
     "window-close-v2": v2.SawyerWindowCloseEnvV2,
+
+    "reach-v3":v3.SawyerReachEnvV3,
 }
 
 
@@ -270,6 +272,14 @@ ALL_V2_ENVIRONMENTS = _get_env_dict(
 ALL_V2_ENVIRONMENTS_GOAL_HIDDEN = _create_hidden_goal_envs(ALL_V2_ENVIRONMENTS)
 ALL_V2_ENVIRONMENTS_GOAL_OBSERVABLE = _create_observable_goal_envs(ALL_V2_ENVIRONMENTS)
 
+ALL_V3_ENVIRONMENTS = _get_env_dict(
+    ["reach-v3"]
+)
+
+ALL_V3_ENVIRONMENTS_GOAL_HIDDEN = _create_hidden_goal_envs(ALL_V3_ENVIRONMENTS)
+ALL_V3_ENVIRONMENTS_GOAL_OBSERVABLE = _create_observable_goal_envs(ALL_V3_ENVIRONMENTS)
+
+
 # MT Dicts
 
 MT10_V2 = _get_env_dict(
@@ -297,6 +307,13 @@ ML1_V2 = _get_train_test_env_dict(
     list(ALL_V2_ENVIRONMENTS.keys()), list(ALL_V2_ENVIRONMENTS.keys())
 )
 ML1_args_kwargs = _get_args_kwargs(ALL_V2_ENVIRONMENTS, ML1_V2["train"])
+
+ML1_V3 = _get_train_test_env_dict(
+    list(ALL_V3_ENVIRONMENTS.keys()), list(ALL_V3_ENVIRONMENTS.keys())
+)
+
+ML1_V3_args_kwargs = _get_args_kwargs(ALL_V3_ENVIRONMENTS, ML1_V3["train"])
+
 
 ML10_V2 = _get_train_test_env_dict(
     train_env_names=[

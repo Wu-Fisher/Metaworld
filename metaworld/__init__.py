@@ -248,6 +248,33 @@ class ML1(Benchmark):
         )
 
 
+class ML1_V3(Benchmark):
+    ENV_NAMES = list(_env_dict.ALL_V3_ENVIRONMENTS.keys())
+
+    def __init__(self, env_name, seed=None):
+        super().__init__()
+        if env_name not in _env_dict.ALL_V3_ENVIRONMENTS:
+            raise ValueError(f"{env_name} is not a V3 environment")
+
+        cls = _env_dict.ALL_V3_ENVIRONMENTS[env_name]
+        self._train_classes = OrderedDict([(env_name, cls)])
+        self._test_classes = self._train_classes
+        args_kwargs = _env_dict.ML1_V3_args_kwargs[env_name]
+
+        self._train_tasks = _make_tasks(
+            self._train_classes, {env_name: args_kwargs}, _ML_OVERRIDE, seed=seed
+        )
+        self._test_tasks = _make_tasks(
+            self._test_classes,
+            {env_name: args_kwargs},
+            _ML_OVERRIDE,
+            seed=(seed + 1 if seed is not None else seed),
+        )
+    
+
+
+
+
 class ML10(Benchmark):
     """The ML10 benchmark. Contains 10 tasks in its train set and 5 tasks in its test set. The goal position is not part of the observation."""
 
