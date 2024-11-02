@@ -24,6 +24,15 @@
         <position ctrllimited="true" ctrlrange="-1 1" joint="r_close" kp="400"  user="1"/>
         <position ctrllimited="true" ctrlrange="-1 1" joint="l_close" kp="400"  user="1"/>
     </actuator>
+
+    <sensor>
+      <accelerometer name="right_pad_acc" site="rightpad_site"/>
+      <accelerometer name="left_pad_acc" site="leftpad_site"/>
+      <touch name="right_pad_touch" site="rightpad_site"/>
+      <touch name="left_pad_touch" site="leftpad_site"/>
+      <force name="right_pad_force" site="rightpad_site"/>
+      <force name="left_pad_force" site="leftpad_site"/>
+    </sensor>
     <equality>
         <weld body1="mocap" body2="hand" solref="0.02 1"></weld>
     </equality>

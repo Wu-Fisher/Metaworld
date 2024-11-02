@@ -26,4 +26,8 @@
     <equality>
         <weld body1="mocap" body2="hand" solref="0.02 1" />
     </equality>
+    <!-- <sensor>
+      <accelerometer name="right_pad_acc",site="rightpad_site"/>
+        <accelerometer name="left_pad_acc",site="leftpad_site"/>
+    </sensor> -->
 </mujoco>
